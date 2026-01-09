@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'idea'
+    id 'org.sonarqube' version '3.0'
+}
+
+group = 'co.com.davivienda'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    serenityVersion = '2.4.34'
+    serenityCucumberVersion = '2.4.34'
+    junitVersion = '5.7.2'
+    apachePoiVersion = '3.17'
+}
+
+dependencies {
+    implementation "net.serenity-bdd:serenity-core:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-assertions:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-ensure:${serenityVersion}"
+    implementation "net.serenity-bdd:serenity-screenplay-rest:${serenityVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.11.3"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.3"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.0"
+    testImplementation "net.serenity-bdd:serenity-cucumber6:${serenityCucumberVersion}"
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.17.2'
+    implementation "io.github.bonigarcia:webdrivermanager:5.6.4"
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+}
+
+test {
+    useJUnit()
+    include '**/*Test.class'
+    include '**/*Runner.class'
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+defaultTasks 'clean', 'test', 'aggregate'
+gradle.startParameter.continueOnFailure = true

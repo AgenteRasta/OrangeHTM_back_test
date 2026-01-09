@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Validar servicios que traern los usuarios" skipped="0" tests="1" time="14.5" timestamp="2026-01-09 01:32:48"><testcase name="Obtener un usuario, y validar el filtro por nombre del directrio"/></testsuite>
